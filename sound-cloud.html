@@ -1,0 +1,120 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-input/paper-input.html">
+<link rel="import" href="../paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../iron-icon/iron-icon.html">
+<link rel="import" href="../iron-icons/iron-icons.html">
+
+<!--
+An element for integrate for any page.
+
+Example:
+
+    <sound-cloud></sound-cloud>
+
+Example:
+
+    <sound-cloud>
+      <h2>Hello sound-cloud</h2>
+    </sound-cloud>
+
+@demo demo/index.html
+@hero hero.svg
+-->
+
+<dom-module id="sound-cloud">
+  <template>
+    <style>
+      :host {
+        display: block;
+        box-sizing: border-box;
+      }
+
+      .author img {
+        display: block;
+        float: left;
+        margin-right: 5px;
+        max-height: 100px;
+        max-width: 100px;
+      }
+      paper-input{
+        width: 50%;
+      }
+      iframe{
+        margin-top: 20px;
+        margin-bottom: 30px;
+
+        -moz-border-radius: 12px;
+        -webkit-border-radius: 12px;
+        border-radius: 12px;
+
+        -moz-box-shadow: 4px 4px 14px #000;
+        -webkit-box-shadow: 4px 4px 14px #000;
+        box-shadow: 4px 4px 14px #000;
+
+      }
+    </style>
+    <div>
+      <!DOCTYPE html>
+      <iframe
+              id="sc-widget"
+              src$="https://w.soundcloud.com/player/?url={{urlM}}"
+              width="[[width]]"
+              height="[[height]]"
+              scrolling="no"
+              frameborder="no">
+
+      </iframe>
+    </div>
+    <div>
+      <paper-input
+
+              label="Enter SoundCloud URL example: http://api.soundcloud.com/users/1539950/favorites"
+              value="{{urlM::input}}">
+        <div prefix>
+          <iron-icon icon="search"></iron-icon>
+        </div>
+      </paper-input>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'sound-cloud',
+
+      properties: {
+
+        /**
+         * `height` is used for the viewer height, could be a number or a percentage
+         */
+        height: {
+          type: String,
+          value: "450px"
+        },
+        /**
+         * `width` is used for the viewer width, could be a number or a percentage
+         */
+        width: {
+          type: String,
+          value: "50%"
+        },
+        /**
+         * 'urlM' is used to find URL of the music
+         */
+        urlM: {
+          type: String,
+          value: "https://soundcloud.com/user78966337/sets/david-guett"
+        }
+      }
+    });
+  </script>
+</dom-module>
